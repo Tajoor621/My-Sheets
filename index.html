@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My-Sheets Voice</title>
+</head>
+<body>
+    <h1>💰 Expense Tracker</h1>
+    <button id="record" style="padding:20px;font-size:20px;">🎤 Hold to Speak</button>
+    <p id="output" style="font-size:24px;margin-top:30px;"></p>
+    
+    <script>
+        const btn = document.getElementById('record');
+        const output = document.getElementById('output');
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        
+        recognition.lang = 'en-US';
+        recognition.continuous = false;
+        
+        btn.addEventListener('mousedown', () => {
+            output.textContent = '🎙️ Listening...';
+            recognition.start();
+        });
+        
+        btn.addEventListener('mouseup', () => recognition.stop());
+        
+        recognition.onresult = (event) => {
+            const text = event.results[0][0].transcript;
+            output.textContent = '📝 You said: ' + text;
+        };
+        
+        recognition.onerror = () => {
+            output.textContent = '❌ Please allow microphone access';
+        };
+    </script>
+</body>
+</html>
