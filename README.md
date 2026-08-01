@@ -1,2 +1,2 @@
 # My-Sheets
-Daily/Monthly expenses tracker with voice input.
+Daily/Monthly expenses tracker.
